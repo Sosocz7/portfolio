@@ -1,228 +1,88 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio de Sofiane Ghazal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0a192f;
-            --text-color: #8892b0;
-            --accent-color: #64ffda;
-            --secondary-color: #112240;
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Animation du titre principal
+    gsap.from("h1", {
+        duration: 1,
+        y: -50,
+        opacity: 0,
+        ease: "bounce",
+        delay: 0.5
+    });
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
+    // Animation des sections au défilement
+    gsap.utils.toArray("section").forEach(section => {
+        gsap.from(section, {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    // Animation des barres de compétences
+    gsap.utils.toArray(".skill-progress").forEach(bar => {
+        gsap.to(bar, {
+            width: bar.getAttribute("data-width") + "%",
+            duration: 1.5,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: bar,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
 
-        header {
-            background: rgba(10, 25, 47, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+    // Animation du menu de navigation
+    gsap.from("nav ul li", {
+        opacity: 0,
+        y: -20,
+        stagger: 0.2,
+        duration: 0.5,
+        ease: "power2.out"
+    });
 
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style-type: none;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #fff;
-            text-shadow: 0 0 10px var(--accent-color);
-        }
-
-        main {
-            margin-top: 80px;
-            padding: 40px 0;
-        }
-
-        section {
-            margin-bottom: 60px;
-            background-color: var(--secondary-color);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, var(--accent-color), transparent);
-            opacity: 0.05;
-            z-index: -1;
-        }
-
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            font-size: 2.5em;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .skill-bar {
-            width: 100%;
-            background-color: #1d3557;
-            height: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-color), #00ffff);
-            border-radius: 5px;
-            width: 0;
-            transition: width 1s ease-in-out;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .floating-image {
-            animation: float 6s ease-in-out infinite;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#profil">Profil</a></li>
-                <li><a href="#parcours">Parcours</a></li>
-                <li><a href="#stages">Stages</a></li>
-                <li><a href="#competences">Compétences</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="container">
-        <section id="accueil">
-            <h2>Sofiane Ghazal</h2>
-            <p>Étudiant en BTS SIO - Option SISR</p>
-            <img src="chemin/vers/votre/photo.jpg" alt="Sofiane Ghazal" class="floating-image" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover;">
-        </section>
-
-        <section id="profil">
-            <h2>Profil</h2>
-            <p>Étudiant passionné en première année de BTS Services Informatiques aux Organisations (SIO), option Solutions d'Infrastructure, Systèmes et Réseaux (SISR) au Lycée Jean-Jacques Rousseau à Montmorency.</p>
-        </section>
-
-        <section id="parcours">
-            <h2>Parcours</h2>
-            <ul>
-                <li>BTS SIO - Option SISR (Septembre 2023 - Présent)</li>
-                <li>Licence AES - Université Paris 8 Vincennes (Septembre 2022 - Septembre 2023)</li>
-                <li>BAC STMG - Option Gestion Finance (Obtenu en 2021)</li>
-            </ul>
-        </section>
-
-        <section id="stages">
-            <h2>Stages</h2>
-            <h3>Stage de première année - MRG Bâtiment et Menuiserie</h3>
-            <p>Période : 1er juin au 1er juillet</p>
-            <p>Missions réalisées : Configuration et mise à jour des postes de travail, assistance aux utilisateurs, amélioration de l'organisation des données, création de fichiers Excel pour le suivi des commandes et des stocks.</p>
-        </section>
-
-        <section id="competences">
-            <h2>Compétences</h2>
-            <div class="skill">
-                <p>VLAN, routage, VPN</p>
-                <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
-            </div>
-            <div class="skill">
-                <p>Pare-feu, DHCP, DNS</p>
-                <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
-            </div>
-            <div class="skill">
-                <p>Hyper-V, VMware</p>
-                <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
-            </div>
-            <div class="skill">
-                <p>GLPI, OCS Inventory, Squid</p>
-                <div class="skill-bar"><div class="skill-progress" style="width: 65%"></div></div>
-            </div>
-            <div class="skill">
-                <p>Conformité RGPD</p>
-                <div class="skill-bar"><div class="skill-progress" style="width: 60%"></div></div>
-            </div>
-        </section>
-
-        <section id="projets">
-            <h2>Projets</h2>
-            <h3>Création d'un réseau d'entreprise virtuel</h3>
-            <p>Mise en place d'un réseau virtuel dans un environnement Hyper-V avec VLAN, routage, et VPN. Configuration de la sécurité du réseau (pare-feu, DHCP, DNS).</p>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Email : Sofiane.ghazal2@gmail.com</p>
-            <p>Téléphone : 07 67 91 43 63</p>
-            <p>Localisation : Épinay-sur-Seine</p>
-        </section>
-    </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const skillBars = document.querySelectorAll('.skill-progress');
-            skillBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 300);
+    // Animation au survol des sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.addEventListener('mouseenter', () => {
+            gsap.to(section, {
+                scale: 1.02,
+                duration: 0.3,
+                ease: "power2.out"
             });
         });
-    </script>
-</body>
-</html>
+        section.addEventListener('mouseleave', () => {
+            gsap.to(section, {
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+    });
+
+    // Animation de la timeline (si vous en avez une)
+    gsap.utils.toArray(".timeline-item").forEach(item => {
+        gsap.from(item, {
+            opacity: 0,
+            x: item.classList.contains("left") ? -50 : 50,
+            duration: 1,
+            scrollTrigger: {
+                trigger: item,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+});
+</script>
