@@ -1,126 +1,201 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <style>
-    /* Reset de base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* Styles généraux */
-    body {
-      font-family: Arial, sans-serif;
-      color: #333;
-      background-color: #f4f4f9;
-      line-height: 1.6;
-      padding: 0 1.5rem;
-    }
-
-    /* Header */
-    .hero {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 2rem 0;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .hero p {
-      font-size: 1.25rem;
-    }
-
-    /* Sections */
-    section {
-      padding: 2rem 0;
-      border-bottom: 1px solid #ddd;
-    }
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #333;
-      text-align: center;
-    }
-
-    /* Projets */
-    #projects .project {
-      background: #fff;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .project h3 {
-      font-size: 1.5rem;
-      color: #333;
-    }
-    .project p {
-      color: #555;
-    }
-
-    /* Contact */
-    #contact {
-      text-align: center;
-    }
-    #contact a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    #contact a:hover {
-      text-decoration: underline;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 1rem 0;
-      color: #666;
-      font-size: 0.875rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Sofiane Ghazal</title>
+    <style>
+        /* Styles de base */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        
+        header h1 {
+            margin: 0;
+            text-align: center;
+            animation: fadeIn 2s;
+        }
+        
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        nav ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #e8491d;
+        }
+        
+        section {
+            padding: 20px 0;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h2 {
+            color: #35424a;
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Responsive design */
+        @media(max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            nav ul li {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Section d'accueil -->
-  <header class="hero">
-    <h1>Bienvenue sur mon portfolio</h1>
-    <p>Développeur Web & Passionné de Technologie</p>
-  </header>
+    <header>
+        <div class="container">
+            <h1>Sofiane Ghazal</h1>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#profil">Profil</a></li>
+                    <li><a href="#parcours">Parcours</a></li>
+                    <li><a href="#stages">Stages</a></li>
+                    <li><a href="#competences">Compétences</a></li>
+                    <li><a href="#projets">Projets BTS SIO</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <!-- Section À propos de moi -->
-  <section id="about">
-    <h2>À propos de moi</h2>
-    <p>Je suis un développeur web avec une passion pour créer des expériences numériques uniques. J'ai travaillé sur plusieurs projets allant de sites statiques simples aux applications web interactives.</p>
-  </section>
+    <div class="container">
+        <section id="accueil">
+            <h2>Accueil</h2>
+            <p>Bienvenue sur mon portfolio. Je suis étudiant en BTS SIO option SISR, passionné par l'informatique et les nouvelles technologies.</p>
+        </section>
 
-  <!-- Section Projets -->
-  <section id="projects">
-    <h2>Mes projets</h2>
-    <div class="project">
-      <h3>Projet 1 : Site de E-commerce</h3>
-      <p>Description du projet : Un site e-commerce construit avec HTML, CSS et JavaScript.</p>
+        <section id="profil">
+            <h2>Profil</h2>
+            <p>Étudiant en première année de BTS Services Informatiques aux Organisations (SIO), option Solutions d'Infrastructure, Systèmes et Réseaux (SISR) au Lycée Jean-Jacques Rousseau à Montmorency.</p>
+        </section>
+
+        <section id="parcours">
+            <h2>Parcours</h2>
+            <ul>
+                <li>BTS SIO - Option SISR (Septembre 2023 - Présent)</li>
+                <li>Licence AES - Université Paris 8 Vincennes (Septembre 2022 - Septembre 2023)</li>
+                <li>BAC STMG - Option Gestion Finance (Obtenu en 2021)</li>
+            </ul>
+        </section>
+
+        <section id="stages">
+            <h2>Stages</h2>
+            <h3>Stage de première année - MRG Bâtiment et Menuiserie</h3>
+            <p>Période : 1er juin au 1er juillet</p>
+            <p>Missions réalisées : Configuration et mise à jour des postes de travail, assistance aux utilisateurs, amélioration de l'organisation des données, création de fichiers Excel pour le suivi des commandes et des stocks.</p>
+        </section>
+
+        <section id="competences">
+            <h2>Compétences</h2>
+            <ul>
+                <li>VLAN, routage, VPN</li>
+                <li>Pare-feu, DHCP, DNS</li>
+                <li>Hyper-V, VMware</li>
+                <li>GLPI, OCS Inventory, Squid</li>
+                <li>Conformité RGPD</li>
+                <li>Gestion des accès</li>
+                <li>Surveillance des vulnérabilités</li>
+            </ul>
+        </section>
+
+        <section id="projets">
+            <h2>Projets BTS SIO</h2>
+            <h3>Création d'un réseau d'entreprise virtuel</h3>
+            <p>Mise en place d'un réseau virtuel dans un environnement Hyper-V avec VLAN, routage, et VPN. Configuration de la sécurité du réseau (pare-feu, DHCP, DNS).</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email : Sofiane.ghazal2@gmail.com</p>
+            <p>Téléphone : 07 67 91 43 63</p>
+            <p>Localisation : Épinay-sur-Seine</p>
+        </section>
     </div>
-    <div class="project">
-      <h3>Projet 2 : Portfolio interactif</h3>
-      <p>Description du projet : Un portfolio en ligne interactif conçu pour mettre en valeur mes compétences en développement web.</p>
-    </div>
-    <!-- Ajoutez plus de projets ici -->
-  </section>
 
-  <!-- Section Contact -->
-  <section id="contact">
-    <h2>Contactez-moi</h2>
-    <p>Vous pouvez me joindre par email à : <a href="mailto:monemail@example.com">monemail@example.com</a></p>
-  </section>
+    <script>
+        // Animation au défilement
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2024 Mon Portfolio</p>
-  </footer>
+        function handleScroll() {
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                if (isElementInViewport(section)) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+    </script>
 </body>
 </html>
