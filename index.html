@@ -5,124 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio de Sofiane Ghazal</title>
     <style>
-        /* Styles de base */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--background-color);
+            color: var(--text-color);
         }
-        
+
         .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        
+
         header {
-            background: #35424a;
-            color: #ffffff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #e8491d 3px solid;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
-        
-        header h1 {
-            margin: 0;
-            text-align: center;
-            animation: fadeIn 2s;
-        }
-        
-        nav {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
+
         nav ul {
-            padding: 0;
+            display: flex;
+            justify-content: center;
             list-style-type: none;
         }
-        
+
         nav ul li {
-            display: inline;
-            margin-right: 20px;
+            margin: 0 15px;
         }
-        
+
         nav ul li a {
-            color: #ffffff;
+            color: #fff;
             text-decoration: none;
-            font-size: 18px;
+            font-weight: bold;
             transition: color 0.3s ease;
         }
-        
+
         nav ul li a:hover {
-            color: #e8491d;
+            color: var(--secondary-color);
         }
-        
+
+        main {
+            margin-top: 80px;
+            padding: 40px 0;
+        }
+
         section {
-            padding: 20px 0;
-            margin: 20px 0;
-            background: #fff;
+            margin-bottom: 40px;
+            background-color: #fff;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        
+
         section.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         h2 {
-            color: #35424a;
+            color: var(--primary-color);
+            margin-bottom: 20px;
         }
-        
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
         }
-        
-        /* Responsive design */
-        @media(max-width: 768px) {
-            .container {
-                width: 95%;
-            }
-            
-            nav ul li {
-                display: block;
-                margin-bottom: 10px;
-            }
+
+        .expandable-content.expanded {
+            max-height: 1000px;
+        }
+
+        .expand-btn {
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            background-color: #27ae60;
+        }
+
+        .skill-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            height: 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            width: 0;
+            transition: width 1s ease-in-out;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Sofiane Ghazal</h1>
-            <nav>
-                <ul>
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#profil">Profil</a></li>
-                    <li><a href="#parcours">Parcours</a></li>
-                    <li><a href="#stages">Stages</a></li>
-                    <li><a href="#competences">Compétences</a></li>
-                    <li><a href="#projets">Projets BTS SIO</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#stages">Stages</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets BTS SIO</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="container">
+    <main class="container">
         <section id="accueil">
-            <h2>Accueil</h2>
-            <p>Bienvenue sur mon portfolio. Je suis étudiant en BTS SIO option SISR, passionné par l'informatique et les nouvelles technologies.</p>
+            <h2>Sofiane Ghazal</h2>
+            <p>Étudiant en BTS SIO - Option SISR</p>
+            <div class="expandable-content">
+                <p>Bienvenue sur mon portfolio. Je suis passionné par l'informatique et les nouvelles technologies, actuellement en formation pour devenir un professionnel des réseaux et de la maintenance informatique.</p>
+            </div>
+            <button class="expand-btn">En savoir plus</button>
         </section>
 
         <section id="profil">
@@ -143,26 +175,50 @@
             <h2>Stages</h2>
             <h3>Stage de première année - MRG Bâtiment et Menuiserie</h3>
             <p>Période : 1er juin au 1er juillet</p>
-            <p>Missions réalisées : Configuration et mise à jour des postes de travail, assistance aux utilisateurs, amélioration de l'organisation des données, création de fichiers Excel pour le suivi des commandes et des stocks.</p>
+            <div class="expandable-content">
+                <p>Missions réalisées :</p>
+                <ul>
+                    <li>Configuration et mise à jour des postes de travail</li>
+                    <li>Assistance aux utilisateurs pour des problèmes techniques</li>
+                    <li>Amélioration de l'organisation des données sur le réseau partagé</li>
+                    <li>Création de fichiers Excel pour le suivi des commandes et des stocks</li>
+                </ul>
+            </div>
+            <button class="expand-btn">Voir les détails</button>
         </section>
 
         <section id="competences">
             <h2>Compétences</h2>
-            <ul>
-                <li>VLAN, routage, VPN</li>
-                <li>Pare-feu, DHCP, DNS</li>
-                <li>Hyper-V, VMware</li>
-                <li>GLPI, OCS Inventory, Squid</li>
-                <li>Conformité RGPD</li>
-                <li>Gestion des accès</li>
-                <li>Surveillance des vulnérabilités</li>
-            </ul>
+            <div class="skill">
+                <p>VLAN, routage, VPN</p>
+                <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+            </div>
+            <div class="skill">
+                <p>Pare-feu, DHCP, DNS</p>
+                <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+            </div>
+            <div class="skill">
+                <p>Hyper-V, VMware</p>
+                <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+            </div>
+            <div class="skill">
+                <p>GLPI, OCS Inventory, Squid</p>
+                <div class="skill-bar"><div class="skill-progress" data-width="65"></div></div>
+            </div>
+            <div class="skill">
+                <p>Conformité RGPD</p>
+                <div class="skill-bar"><div class="skill-progress" data-width="60"></div></div>
+            </div>
         </section>
 
         <section id="projets">
             <h2>Projets BTS SIO</h2>
             <h3>Création d'un réseau d'entreprise virtuel</h3>
-            <p>Mise en place d'un réseau virtuel dans un environnement Hyper-V avec VLAN, routage, et VPN. Configuration de la sécurité du réseau (pare-feu, DHCP, DNS).</p>
+            <div class="expandable-content">
+                <p>Mise en place d'un réseau virtuel dans un environnement Hyper-V avec VLAN, routage, et VPN. Configuration de la sécurité du réseau (pare-feu, DHCP, DNS).</p>
+                <p>Résultat : simulation de la configuration réseau d'une PME pour comprendre les bonnes pratiques de segmentation et de sécurité.</p>
+            </div>
+            <button class="expand-btn">Voir les détails du projet</button>
         </section>
 
         <section id="contact">
@@ -171,7 +227,7 @@
             <p>Téléphone : 07 67 91 43 63</p>
             <p>Localisation : Épinay-sur-Seine</p>
         </section>
-    </div>
+    </main>
 
     <script>
         // Animation au défilement
@@ -196,6 +252,31 @@
 
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('load', handleScroll);
+
+        // Animation des barres de compétences
+        function animateSkillBars() {
+            var skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(function(bar) {
+                var width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+            });
+        }
+
+        // Contenu extensible
+        var expandBtns = document.querySelectorAll('.expand-btn');
+        expandBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var content = this.previousElementSibling;
+                content.classList.toggle('expanded');
+                this.textContent = content.classList.contains('expanded') ? 'Réduire' : 'En savoir plus';
+            });
+        });
+
+        // Exécuter les animations au chargement de la page
+        window.addEventListener('load', function() {
+            handleScroll();
+            animateSkillBars();
+        });
     </script>
 </body>
 </html>
