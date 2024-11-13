@@ -1,0 +1,71 @@
+:root {
+    --bg-color: #f0f4f8;
+    --text-color: #333;
+    --accent-color: #3498db;
+    --secondary-color: #2ecc71;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+main {
+    margin-top: 80px;
+    padding: 40px 0;
+}
+
+section {
+    margin-bottom: 60px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 40px;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+/* Ajoute ici les autres styles de ton site */
