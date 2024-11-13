@@ -78,11 +78,6 @@
             padding: 40px;
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        section:hover {
-            transform: translateY(-5px);
         }
 
         section::before {
@@ -102,18 +97,6 @@
             color: var(--text-color);
             margin-bottom: 20px;
             font-size: 2em;
-            position: relative;
-            display: inline-block;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-color1), var(--accent-color2));
         }
 
         .skill-bar {
@@ -133,113 +116,14 @@
             transition: width 1s ease-in-out;
         }
 
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
 
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--accent-color1);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -17px;
-            background-color: var(--accent-color2);
-            border: 4px solid var(--accent-color1);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .left {
-            left: 0;
-        }
-
-        .right {
-            left: 50%;
-        }
-
-        .left::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            right: 30px;
-            border: medium solid var(--accent-color1);
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent var(--accent-color1);
-        }
-
-        .right::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            left: 30px;
-            border: medium solid var(--accent-color1);
-            border-width: 10px 10px 10px 0;
-            border-color: transparent var(--accent-color1) transparent transparent;
-        }
-
-        .right::after {
-            left: -16px;
-        }
-
-        .content {
-            padding: 20px 30px;
-            background-color: white;
-            position: relative;
-            border-radius: 6px;
-        }
-
-        @media screen and (max-width: 600px) {
-            .timeline::after {
-                left: 31px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-
-            .timeline-item::before {
-                left: 60px;
-                border: medium solid white;
-                border-width: 10px 10px 10px 0;
-                border-color: transparent white transparent transparent;
-            }
-
-            .left::after, .right::after {
-                left: 15px;
-            }
-
-            .right {
-                left: 0%;
-            }
+        .floating-image {
+            animation: float 6s ease-in-out infinite;
         }
     </style>
 </head>
@@ -272,29 +156,11 @@
 
         <section id="parcours">
             <h2>Parcours</h2>
-            <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="content">
-                        <h3>BTS SIO - Option SISR</h3>
-                        <p>Septembre 2023 - Présent</p>
-                        <p>Lycée Jean-Jacques Rousseau, Montmorency</p>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="content">
-                        <h3>Licence AES</h3>
-                        <p>Septembre 2022 - Septembre 2023</p>
-                        <p>Université Paris 8 Vincennes, Saint-Denis</p>
-                    </div>
-                </div>
-                <div class="timeline-item left">
-                    <div class="content">
-                        <h3>BAC STMG - Option Gestion Finance</h3>
-                        <p>Obtenu en 2021</p>
-                        <p>Lycée Eugène Delacroix, Drancy</p>
-                    </div>
-                </div>
-            </div>
+            <ul>
+                <li>BTS SIO - Option SISR (Septembre 2023 - Présent) - Lycée Jean-Jacques Rousseau, Montmorency</li>
+                <li>Licence AES - Université Paris 8 Vincennes (Septembre 2022 - Septembre 2023)</li>
+                <li>BAC STMG - Option Gestion Finance (Obtenu en 2021) - Lycée Eugène Delacroix, Drancy</li>
+            </ul>
         </section>
 
         <section id="stages">
@@ -359,96 +225,17 @@
                     bar.style.width = width + '%';
                 }, 300);
             });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
         });
     </script>
 </body>
 </html>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    // Animation du titre principal
-    gsap.from("h1", {
-        duration: 1,
-        y: -50,
-        opacity: 0,
-        ease: "bounce",
-        delay: 0.5
-    });
-
-    // Animation des sections au défilement
-    gsap.utils.toArray("section").forEach(section => {
-        gsap.from(section, {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            scrollTrigger: {
-                trigger: section,
-                start: "top 80%",
-                end: "bottom 20%",
-                toggleActions: "play none none reverse"
-            }
-        });
-    });
-
-    // Animation des barres de compétences
-    gsap.utils.toArray(".skill-progress").forEach(bar => {
-        gsap.to(bar, {
-            width: bar.getAttribute("data-width") + "%",
-            duration: 1.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: bar,
-                start: "top 80%",
-                end: "bottom 20%",
-                toggleActions: "play none none reverse"
-            }
-        });
-    });
-
-    // Animation du menu de navigation
-    gsap.from("nav ul li", {
-        opacity: 0,
-        y: -20,
-        stagger: 0.2,
-        duration: 0.5,
-        ease: "power2.out"
-    });
-
-    // Animation au survol des sections
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        section.addEventListener('mouseenter', () => {
-            gsap.to(section, {
-                scale: 1.02,
-                duration: 0.3,
-                ease: "power2.out"
-            });
-        });
-        section.addEventListener('mouseleave', () => {
-            gsap.to(section, {
-                scale: 1,
-                duration: 0.3,
-                ease: "power2.out"
-            });
-        });
-    });
-
-    // Animation de la timeline (si vous en avez une)
-    gsap.utils.toArray(".timeline-item").forEach(item => {
-        gsap.from(item, {
-            opacity: 0,
-            x: item.classList.contains("left") ? -50 : 50,
-            duration: 1,
-            scrollTrigger: {
-                trigger: item,
-                start: "top 80%",
-                end: "bottom 20%",
-                toggleActions: "play none none reverse"
-            }
-        });
-    });
-});
-</script>
