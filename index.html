@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio de Sofiane Ghazal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f0e6ff;
-            --text-color: #4a4a4a;
-            --accent-color1: #b8e1ff;
-            --accent-color2: #ffd3b6;
-            --accent-color3: #dcedc1;
+            --bg-color: #0a192f;
+            --text-color: #8892b0;
+            --accent-color: #64ffda;
+            --secondary-color: #112240;
         }
 
         * {
@@ -23,7 +20,7 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -36,7 +33,8 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--accent-color1), var(--accent-color2));
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
             padding: 20px 0;
             position: fixed;
             width: 100%;
@@ -55,7 +53,7 @@
         }
 
         nav ul li a {
-            color: var(--text-color);
+            color: var(--accent-color);
             text-decoration: none;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
@@ -66,7 +64,7 @@
 
         nav ul li a:hover {
             color: #fff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            text-shadow: 0 0 10px var(--accent-color);
         }
 
         main {
@@ -76,9 +74,9 @@
 
         section {
             margin-bottom: 60px;
-            background-color: #fff;
+            background-color: var(--secondary-color);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             padding: 40px;
             position: relative;
             overflow: hidden;
@@ -91,14 +89,14 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, var(--accent-color3), transparent);
-            opacity: 0.1;
+            background: radial-gradient(circle, var(--accent-color), transparent);
+            opacity: 0.05;
             z-index: -1;
         }
 
         h2 {
             font-family: 'Orbitron', sans-serif;
-            color: var(--text-color);
+            color: var(--accent-color);
             margin-bottom: 20px;
             font-size: 2.5em;
             text-transform: uppercase;
@@ -107,7 +105,7 @@
 
         .skill-bar {
             width: 100%;
-            background-color: #e0e0e0;
+            background-color: #1d3557;
             height: 10px;
             border-radius: 5px;
             margin-bottom: 20px;
@@ -116,119 +114,20 @@
 
         .skill-progress {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent-color1), var(--accent-color2));
+            background: linear-gradient(90deg, var(--accent-color), #00ffff);
             border-radius: 5px;
             width: 0;
             transition: width 1s ease-in-out;
         }
 
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
 
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--accent-color1);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -17px;
-            background-color: var(--accent-color2);
-            border: 4px solid var(--accent-color1);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .left {
-            left: 0;
-        }
-
-        .right {
-            left: 50%;
-        }
-
-        .left::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            right: 30px;
-            border: medium solid var(--accent-color1);
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent var(--accent-color1);
-        }
-
-        .right::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            left: 30px;
-            border: medium solid var(--accent-color1);
-            border-width: 10px 10px 10px 0;
-            border-color: transparent var(--accent-color1) transparent transparent;
-        }
-
-        .right::after {
-            left: -16px;
-        }
-
-        .content {
-            padding: 20px 30px;
-            background-color: white;
-            position: relative;
-            border-radius: 6px;
-        }
-
-        @media screen and (max-width: 600px) {
-            .timeline::after {
-                left: 31px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-
-            .timeline-item::before {
-                left: 60px;
-                border: medium solid white;
-                border-width: 10px 10px 10px 0;
-                border-color: transparent white transparent transparent;
-            }
-
-            .left::after, .right::after {
-                left: 15px;
-            }
-
-            .right {
-                left: 0%;
-            }
+        .floating-image {
+            animation: float 6s ease-in-out infinite;
         }
     </style>
 </head>
@@ -251,6 +150,7 @@
         <section id="accueil">
             <h2>Sofiane Ghazal</h2>
             <p>Étudiant en BTS SIO - Option SISR</p>
+            <img src="chemin/vers/votre/photo.jpg" alt="Sofiane Ghazal" class="floating-image" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover;">
         </section>
 
         <section id="profil">
@@ -260,29 +160,11 @@
 
         <section id="parcours">
             <h2>Parcours</h2>
-            <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="content">
-                        <h3>BTS SIO - Option SISR</h3>
-                        <p>Septembre 2023 - Présent</p>
-                        <p>Lycée Jean-Jacques Rousseau, Montmorency</p>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="content">
-                        <h3>Licence AES</h3>
-                        <p>Septembre 2022 - Septembre 2023</p>
-                        <p>Université Paris 8 Vincennes, Saint-Denis</p>
-                    </div>
-                </div>
-                <div class="timeline-item left">
-                    <div class="content">
-                        <h3>BAC STMG - Option Gestion Finance</h3>
-                        <p>Obtenu en 2021</p>
-                        <p>Lycée Eugène Delacroix, Drancy</p>
-                    </div>
-                </div>
-            </div>
+            <ul>
+                <li>BTS SIO - Option SISR (Septembre 2023 - Présent)</li>
+                <li>Licence AES - Université Paris 8 Vincennes (Septembre 2022 - Septembre 2023)</li>
+                <li>BAC STMG - Option Gestion Finance (Obtenu en 2021)</li>
+            </ul>
         </section>
 
         <section id="stages">
@@ -296,23 +178,23 @@
             <h2>Compétences</h2>
             <div class="skill">
                 <p>VLAN, routage, VPN</p>
-                <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
             </div>
             <div class="skill">
                 <p>Pare-feu, DHCP, DNS</p>
-                <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
             </div>
             <div class="skill">
                 <p>Hyper-V, VMware</p>
-                <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
             </div>
             <div class="skill">
                 <p>GLPI, OCS Inventory, Squid</p>
-                <div class="skill-bar"><div class="skill-progress" data-width="65"></div></div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 65%"></div></div>
             </div>
             <div class="skill">
                 <p>Conformité RGPD</p>
-                <div class="skill-bar"><div class="skill-progress" data-width="60"></div></div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 60%"></div></div>
             </div>
         </section>
 
@@ -331,59 +213,14 @@
     </main>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Animation du titre principal
-        gsap.from("h2", {
-            duration: 1,
-            y: -50,
-            opacity: 0,
-            ease: "bounce",
-            stagger: 0.2
-        });
-
-        // Animation des sections au défilement
-        gsap.utils.toArray("section").forEach(section => {
-            gsap.from(section, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse"
-                }
-            });
-        });
-
-        // Animation de la timeline
-        gsap.utils.toArray(".timeline-item").forEach(item => {
-            gsap.from(item, {
-                opacity: 0,
-                x: item.classList.contains("left") ? -50 : 50,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: item,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse"
-                }
-            });
-        });
-
-        // Animation des barres de compétences
-        gsap.utils.toArray(".skill-progress").forEach(bar => {
-            gsap.to(bar, {
-                width: bar.getAttribute("data-width") + "%",
-                duration: 1.5,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: bar,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse"
-                }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
             });
         });
     </script>
