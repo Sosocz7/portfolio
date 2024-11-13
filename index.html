@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio de Sofiane Ghazal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
-            --background-color: #f4f4f4;
-            --text-color: #333;
+            --bg-color: #f0e6ff;
+            --text-color: #4a4a4a;
+            --accent-color1: #b8e1ff;
+            --accent-color2: #ffd3b6;
+            --accent-color3: #dcedc1;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            background-color: var(--background-color);
+            background-color: var(--bg-color);
             color: var(--text-color);
+            line-height: 1.6;
         }
 
         .container {
@@ -34,8 +34,7 @@
         }
 
         header {
-            background-color: var(--primary-color);
-            color: #fff;
+            background: linear-gradient(135deg, var(--accent-color1), var(--accent-color2));
             padding: 20px 0;
             position: fixed;
             width: 100%;
@@ -54,14 +53,18 @@
         }
 
         nav ul li a {
-            color: #fff;
+            color: var(--text-color);
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
         }
 
         nav ul li a:hover {
-            color: var(--secondary-color);
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
         main {
@@ -70,65 +73,94 @@
         }
 
         section {
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
         }
 
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
+        section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-color3), transparent);
+            opacity: 0.1;
+            z-index: -1;
         }
 
         h2 {
-            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            color: var(--text-color);
             margin-bottom: 20px;
-        }
-
-        .expandable-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-
-        .expandable-content.expanded {
-            max-height: 1000px;
-        }
-
-        .expand-btn {
-            background-color: var(--secondary-color);
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .expand-btn:hover {
-            background-color: #27ae60;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         .skill-bar {
             width: 100%;
             background-color: #e0e0e0;
-            height: 20px;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            height: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
         }
 
         .skill-progress {
             height: 100%;
-            background-color: var(--primary-color);
-            border-radius: 10px;
+            background: linear-gradient(90deg, var(--accent-color1), var(--accent-color2));
+            border-radius: 5px;
             width: 0;
             transition: width 1s ease-in-out;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-image {
+            animation: float 6s ease-in-out infinite;
         }
     </style>
 </head>
@@ -141,7 +173,7 @@
                 <li><a href="#parcours">Parcours</a></li>
                 <li><a href="#stages">Stages</a></li>
                 <li><a href="#competences">Compétences</a></li>
-                <li><a href="#projets">Projets BTS SIO</a></li>
+                <li><a href="#projets">Projets</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -151,15 +183,12 @@
         <section id="accueil">
             <h2>Sofiane Ghazal</h2>
             <p>Étudiant en BTS SIO - Option SISR</p>
-            <div class="expandable-content">
-                <p>Bienvenue sur mon portfolio. Je suis passionné par l'informatique et les nouvelles technologies, actuellement en formation pour devenir un professionnel des réseaux et de la maintenance informatique.</p>
-            </div>
-            <button class="expand-btn">En savoir plus</button>
+            <img src="https://example.com/path-to-your-image.jpg" alt="Sofiane Ghazal" class="floating-image" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover;">
         </section>
 
         <section id="profil">
             <h2>Profil</h2>
-            <p>Étudiant en première année de BTS Services Informatiques aux Organisations (SIO), option Solutions d'Infrastructure, Systèmes et Réseaux (SISR) au Lycée Jean-Jacques Rousseau à Montmorency.</p>
+            <p>Étudiant passionné en première année de BTS Services Informatiques aux Organisations (SIO), option Solutions d'Infrastructure, Systèmes et Réseaux (SISR) au Lycée Jean-Jacques Rousseau à Montmorency.</p>
         </section>
 
         <section id="parcours">
@@ -175,50 +204,45 @@
             <h2>Stages</h2>
             <h3>Stage de première année - MRG Bâtiment et Menuiserie</h3>
             <p>Période : 1er juin au 1er juillet</p>
-            <div class="expandable-content">
-                <p>Missions réalisées :</p>
-                <ul>
-                    <li>Configuration et mise à jour des postes de travail</li>
-                    <li>Assistance aux utilisateurs pour des problèmes techniques</li>
-                    <li>Amélioration de l'organisation des données sur le réseau partagé</li>
-                    <li>Création de fichiers Excel pour le suivi des commandes et des stocks</li>
-                </ul>
-            </div>
-            <button class="expand-btn">Voir les détails</button>
+            <p>Missions réalisées : Configuration et mise à jour des postes de travail, assistance aux utilisateurs, amélioration de l'organisation des données, création de fichiers Excel pour le suivi des commandes et des stocks.</p>
         </section>
 
         <section id="competences">
             <h2>Compétences</h2>
             <div class="skill">
                 <p>VLAN, routage, VPN</p>
-                <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
             </div>
             <div class="skill">
                 <p>Pare-feu, DHCP, DNS</p>
-                <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
             </div>
             <div class="skill">
                 <p>Hyper-V, VMware</p>
-                <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
             </div>
             <div class="skill">
                 <p>GLPI, OCS Inventory, Squid</p>
-                <div class="skill-bar"><div class="skill-progress" data-width="65"></div></div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 65%"></div></div>
             </div>
             <div class="skill">
                 <p>Conformité RGPD</p>
-                <div class="skill-bar"><div class="skill-progress" data-width="60"></div></div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 60%"></div></div>
             </div>
         </section>
 
         <section id="projets">
-            <h2>Projets BTS SIO</h2>
-            <h3>Création d'un réseau d'entreprise virtuel</h3>
-            <div class="expandable-content">
-                <p>Mise en place d'un réseau virtuel dans un environnement Hyper-V avec VLAN, routage, et VPN. Configuration de la sécurité du réseau (pare-feu, DHCP, DNS).</p>
-                <p>Résultat : simulation de la configuration réseau d'une PME pour comprendre les bonnes pratiques de segmentation et de sécurité.</p>
+            <h2>Projets</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://example.com/path-to-project-image.jpg" alt="Projet réseau virtuel">
+                    <div class="project-info">
+                        <h3>Réseau d'entreprise virtuel</h3>
+                        <p>Mise en place d'un réseau virtuel dans un environnement Hyper-V avec VLAN, routage, et VPN.</p>
+                    </div>
+                </div>
+                <!-- Ajoutez d'autres projets ici -->
             </div>
-            <button class="expand-btn">Voir les détails du projet</button>
         </section>
 
         <section id="contact">
@@ -230,52 +254,15 @@
     </main>
 
     <script>
-        // Animation au défilement
-        function isElementInViewport(el) {
-            var rect = el.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
-
-        function handleScroll() {
-            var sections = document.querySelectorAll('section');
-            sections.forEach(function(section) {
-                if (isElementInViewport(section)) {
-                    section.classList.add('visible');
-                }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
             });
-        }
-
-        window.addEventListener('scroll', handleScroll);
-        window.addEventListener('load', handleScroll);
-
-        // Animation des barres de compétences
-        function animateSkillBars() {
-            var skillBars = document.querySelectorAll('.skill-progress');
-            skillBars.forEach(function(bar) {
-                var width = bar.getAttribute('data-width');
-                bar.style.width = width + '%';
-            });
-        }
-
-        // Contenu extensible
-        var expandBtns = document.querySelectorAll('.expand-btn');
-        expandBtns.forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var content = this.previousElementSibling;
-                content.classList.toggle('expanded');
-                this.textContent = content.classList.contains('expanded') ? 'Réduire' : 'En savoir plus';
-            });
-        });
-
-        // Exécuter les animations au chargement de la page
-        window.addEventListener('load', function() {
-            handleScroll();
-            animateSkillBars();
         });
     </script>
 </body>
